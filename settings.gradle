@@ -1,1 +1,1 @@
-include ':app', ':behaiv_android', ':javaexample'
+include ':example_kotlin', ':behaiv_android', ':example_java'
