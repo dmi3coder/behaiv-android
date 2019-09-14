@@ -1,11 +1,11 @@
 package de.dmi3y.behaiv.example;
 
-import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 import de.dmi3y.behaiv.Behaiv;
 import de.dmi3y.behaiv.provider.AudioSettingsProvider;
 import de.dmi3y.behaiv.provider.DayTimeProvider;
+import de.dmi3y.behaiv.provider.GpsProvider;
 
 public class MainApplication extends MultiDexApplication {
     private Behaiv behaiv;
@@ -14,6 +14,7 @@ public class MainApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         behaiv = Behaiv.with("chats")
+                .setProvider(new GpsProvider(this))
                 .setProvider(new DayTimeProvider())
                 .setProvider(
                         new AudioSettingsProvider.Builder(this).checkHeadsetConnected().build()
