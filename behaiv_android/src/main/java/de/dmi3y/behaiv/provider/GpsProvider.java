@@ -44,6 +44,7 @@ public class GpsProvider implements Provider {
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     //We use 0,0 coordinates if we don't have position as of now
                     emitter.onSuccess(Arrays.asList(0.0, 0.0));
+                    return;
                 }
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
