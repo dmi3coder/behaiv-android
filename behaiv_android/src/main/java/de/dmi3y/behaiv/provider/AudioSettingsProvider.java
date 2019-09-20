@@ -2,7 +2,6 @@ package de.dmi3y.behaiv.provider;
 
 import android.content.Context;
 import android.media.AudioManager;
-import android.util.Log;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 

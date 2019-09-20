@@ -5,7 +5,6 @@ import android.content.Context
 import android.support.multidex.MultiDexApplication
 import android.util.Log
 import de.dmi3y.behaiv.Behaiv
-import de.dmi3y.behaiv.provider.AudioSettingsProvider
 import de.dmi3y.behaiv.provider.DayTimeProvider
 import de.dmi3y.behaiv.provider.GpsProvider
 import de.dmi3y.behaiv.storage.InternalStorage
