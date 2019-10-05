@@ -24,7 +24,7 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val behaiv = context!!.applicationContext.behaiv()
-        behaiv?.subscribe()!!.subscribe {
+        behaiv?.subscribe()!!.subscribe({
             //this will return on prediction
             Log.d("TASKSFRAGMENT", "predicted:" + it)
             val predictButton = when (it) {
@@ -35,8 +35,12 @@ class TasksFragment : Fragment() {
                 else -> AddButton
             }
             predictButton.setBackgroundColor(Color.RED)
+        }, {
+            it.printStackTrace()
+        })
+        thread {
+            behaiv.startCapturing(true)
         }
-        behaiv.startCapturing(true)
 
 
         val db = context!!.applicationContext.db()
@@ -58,22 +62,30 @@ class TasksFragment : Fragment() {
                 )
             }
 
-            behaiv.stopCapturing(false)
+            thread {
+                behaiv.stopCapturing(false)
+            }
         }
         this.WorkButton.setOnClickListener {
             behaiv.registerLabel("work")
             loadTasks("work")
-            behaiv.stopCapturing(false)
+            thread {
+                behaiv.stopCapturing(false)
+            }
         }
         this.PersonalButton.setOnClickListener {
             behaiv.registerLabel("personal")
             loadTasks("personal")
-            behaiv.stopCapturing(false)
+            thread {
+                behaiv.stopCapturing(false)
+            }
         }
         this.SportButton.setOnClickListener {
             behaiv.registerLabel("sport")
             loadTasks("sport")
-            behaiv.stopCapturing(false)
+            thread {
+                behaiv.stopCapturing(false)
+            }
         }
 
 
