@@ -47,7 +47,10 @@ public class GpsProvider implements Provider {
                     return;
                 }
                 Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
+                if (location == null) {
+                    emitter.onSuccess(Arrays.asList(0.0, 0.0));
+                    return;
+                }
                 emitter.onSuccess(Arrays.asList(location.getLatitude(), location.getLongitude()));
             }
         });
