@@ -32,7 +32,7 @@ public class AudioSettingsProvider implements Provider {
         if (speakerEnabled) {
             featureNames.add("speaker_enabled");
         }
-        return null;
+        return featureNames;
     }
 
     @Override
@@ -45,17 +45,18 @@ public class AudioSettingsProvider implements Provider {
         AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
 
-        ArrayList<Boolean> features = new ArrayList<>();
+        List<Double> features = new ArrayList<>();
         if (headsetEnabled) {
-            features.add(manager.isWiredHeadsetOn());
+            features.add(manager.isWiredHeadsetOn() ? 1.0 : 0.0);
         }
         if (playingMusic) {
-            features.add(manager.isMusicActive());
+            features.add(manager.isMusicActive() ? 1.0 : 0.0);
         }
         if (speakerEnabled) {
-            features.add(manager.isSpeakerphoneOn());
+            features.add(manager.isSpeakerphoneOn() ? 1.0 : 0.0);
         }
-        return null;
+
+        return Single.just(features);
     }
 
     public static class Builder {
